@@ -47,6 +47,13 @@ Decision rules:
   guessing or calling a tool.
 
 Never call a tool "just in case." Pick exactly one path per turn.
+
+IMPORTANT: For any question about the textbook chapter, you must rely
+ONLY on what retrieve_chapter_context returns. If it returns "No
+relevant passages found," tell the user that directly -- do not answer
+from your own general knowledge about business or entrepreneurship
+textbooks, even if you think you know the answer. Only Chapter 1 has
+been ingested; you have no information about any other chapter.
 """
 
 agent=create_agent(
@@ -63,10 +70,3 @@ def ask(user_input: str) -> str:
     )
     return result["messages"][-1].content
  
- 
-if __name__ == "__main__":
-    while True:
-        q = input("You: ")
-        if q.lower() in {"exit", "quit"}:
-            break
-        print("Agent:", ask(q))
